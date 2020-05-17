@@ -1,36 +1,35 @@
 import React from 'react'
-import { GlobalStyle, ActiveBtn, Button } from './GlobalStyle'
+import { GlobalStyles, ActiveBtn, Button } from './GlobalStyles'
 import Link from 'next/link'
+
+import LoginBox from './LoginBox'
+import LoginForm from './LoginForm'
 
 const DefaultView = ({ children }) => {
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-    }
+    const dummy = {
+            isLogged: false,
+            user: 'ejonghwan',
+            post: [],
+            foolowing: [],
+            follower: []
+        }
+
+
+    
 
     return (
         <div className="wrap">
-            <GlobalStyle />
+            <GlobalStyles />
             <div className="header">
                 <Link href="/"><a>home</a></Link>
                 <Link href="/profile"><a>profile</a></Link>
                 
             </div>
-
-            <div className="login-window">
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label htmlFor="id">id</label><br />
-                        <input id="id" />
-                    </div>
-                    <div>
-                        <label htmlFor="password">password</label><br />
-                        <input id="password" />
-                    </div>
-                    <ActiveBtn>login</ActiveBtn>
-                    <Button><Link href="/signup"><a>signup</a></Link></Button>
-                </form>
-            </div>
+            {
+                dummy.isLogged ? <LoginBox /> : <LoginForm isLogged={dummy.isLogged}/>
+            }
+           
             {children}
         </div>
     )
