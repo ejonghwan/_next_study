@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { GlobalStyles, Button, ActiveBtn } from '../component/GlobalStyles'
 
+
+
 export const useInput = (initalState = null) => {
     const [state, setter] = useState(initalState);
     const handler = (e) => {
@@ -10,11 +12,19 @@ export const useInput = (initalState = null) => {
 }
 
 
+
+
 const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
         !chek ? setChekErr(true) : setChekErr(false) 
+        console.log({
+            id,
+            name,
+            password,
+            chek
+        })
 
        
     }
@@ -66,19 +76,19 @@ const Signup = () => {
                 {id}
                 <div>
                     <label htmlFor="id">id</label><br />
-                    <input id="id" onChange={setId} />
+                    <input id="id" onChange={setId} required/>
                 </div>
                 <div>
                     <label htmlFor="name">name</label><br />
-                    <input id="name" onChange={handleName}/>
+                    <input id="name" onChange={handleName} required/>
                 </div>
                 <div>
                     <label htmlFor="password">password</label><br />
-                    <input id="password" onChange={handlePassword}/>
+                    <input id="password" onChange={handlePassword} required />
                 </div>
                 <div>
                     <label htmlFor="password-check">password-check</label><br />
-                    <input id="password-check" onChange={handlePasswordCheck}/>
+                    <input id="password-check" onChange={handlePasswordCheck} required />
                     { passwordCheckErr && <div style={{color: "red", }}>비밀번호가 일치하지 않습니다</div> }
                 </div>
 

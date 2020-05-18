@@ -31,11 +31,11 @@ const LoginForm = ({ isLogged }) => {
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="id">id</label><br />
-                    <input id="id" onChange={handleId} />
+                    <input id="id" onChange={handleId} required/>
                 </div>
                 <div>
                     <label htmlFor="password">password</label><br />
-                    <input id="password" onChange={handlePassword} />
+                    <input id="password" onChange={handlePassword} required/>
                 </div>
                 <ActiveBtn onClick={handleSubmit}>login</ActiveBtn>
                 <Button><Link href="/signup"><a>signup</a></Link></Button>
