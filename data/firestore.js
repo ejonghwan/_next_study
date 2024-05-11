@@ -1,7 +1,8 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
+import { initializeApp, getApp } from "firebase/app";
+import { getFirestore, collection, query, getDocs, Timestamp, setDoc, doc, getDoc, deleteDoc } from "firebase/firestore";
 
+// console.log('getapp?', getApp)
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -13,15 +14,13 @@ const firebaseConfig = {
   appId: process.env.APP_ID
 };
 
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 
 
 // 모든 할일 가져오기
-export async function fetchTotos() {
-
+export async function getAllTodo() {
     // 모든 문서 가져오기
     const q = query(collection(db, "todos"));
     const querySnapshot = await getDocs(q);
@@ -44,6 +43,54 @@ export async function fetchTotos() {
     });
     return fetchedTodos;
 }
+
+
+// 할일 추가
+export async function addTodo({ title }) {
+    const newTodoRef = doc(collection(db, "todos"))
+    const createAtTimestemp = Timestamp.fromDate(new Date());
+    const newTodoData = {
+        id: newTodoRef.id,
+        title,
+        is_done: false,
+        create_at: createAtTimestemp,
+    }
+
+    await setDoc(newTodoRef, newTodoData)
+    return { ...newTodoData, create_at: createAtTimestemp.toDate() };
+}
+
+
+
+// 단일 가져오기
+export async function getTodo(id) {
+    const todoDocRef = doc(db, "todos", id)
+    const todoDocSnap = await getDoc(todoDocRef); 
+
+    if(!todoDocSnap.exists() || id === null) return null;
+    if(todoDocSnap.exists()) {
+        const todo = {
+            id: todoDocSnap.id,
+            title: todoDocSnap.data()["title"],
+            is_done: todoDocSnap.data()["is_done"],
+            created_at: todoDocSnap.data()["created_at"]
+        }
+        return todo
+    } 
+}
+
+
+
+
+// 단일 삭제
+export async function deleteTodo(id) {
+    const isTodo = await getTodo(id)
+    if(!isTodo) return null;
+
+    await deleteDoc(doc(db, "todos", id))
+    return isTodo;
+}
+
 
 
 // module.exports = { fetchTotos }
