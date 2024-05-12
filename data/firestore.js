@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp, getApp } from "firebase/app";
-import { getFirestore, collection, query, getDocs, Timestamp, setDoc, doc, getDoc, deleteDoc } from "firebase/firestore";
+import { getFirestore, collection, query, getDocs, Timestamp, setDoc, doc, getDoc, deleteDoc, updateDoc } from "firebase/firestore";
 
 // console.log('getapp?', getApp)
 
@@ -77,6 +77,17 @@ export async function getTodo(id) {
         }
         return todo
     } 
+}
+
+
+
+// 단일 수정
+export async function updateTodo({ id, title, is_done }) {
+    const isTodo = await getTodo(id)
+    if(!isTodo) return null;
+
+    const todo = await updateDoc(doc(db, "todos", id), { title, is_done });
+    return todo;
 }
 
 
