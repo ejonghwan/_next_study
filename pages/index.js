@@ -1,13 +1,13 @@
 import Head from 'next/head';
 import styles from '@/styles/Home.module.scss';
-import Header from '@/components/Header';
-import Image from 'next/image';
-import pic from '@/public/img/pic.jpg';
-import { useEffect } from 'react';
-import firebase from '@/libs/firebase';
+// import Header from '@/components/Header';
+// import Image from 'next/image';
+// import pic from '@/public/img/pic.jpg';
+// import { useEffect } from 'react';
+// import firebase from '@/libs/firebase';
 
 
-import { useGlobalData } from '@/hooks/useGlobalContext';
+// import { useGlobalData } from '@/hooks/useGlobalContext';
 
 
 export default function Home() {
