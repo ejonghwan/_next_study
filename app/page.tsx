@@ -19,9 +19,34 @@ interface Test {
 const aa = ({ a, b }: { a: string, b: number }) => {
 	console.log('a?', a)
 }
-
-
 aa({ a: '1', b: 3 })
+
+
+
+interface Aa {
+	a: string;
+}
+interface Bb {
+	c: number;
+}
+// const bb = ({ a }: { a: string }, b: { c: number }) => {
+const bb = (a: Aa, b: Bb) => {
+	console.log('b?', a, b)
+}
+bb({ a: 'aa' }, { c: 33 })
+
+
+interface Data {
+	a: string; 
+	b: number;
+	c: { d: string; }
+}
+const cc = (data: Data[]) => {
+	console.log(data)
+}
+cc([{ a: 'aa', b: 3, c: { d: 'dd' } }])
+
+
 
 
 export default function Home() {

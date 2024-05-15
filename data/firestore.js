@@ -36,7 +36,7 @@ export async function getAllTodo() {
             id: doc.id,
             title: doc.data()["title"],
             is_done: doc.data()["is_done"],
-            created_at: doc.data()["created_at"]
+            created_at: doc.data()["created_at"].toDate()
         }
 
         fetchedTodos.push(aTodo)
@@ -73,7 +73,7 @@ export async function getTodo(id) {
             id: todoDocSnap.id,
             title: todoDocSnap.data()["title"],
             is_done: todoDocSnap.data()["is_done"],
-            created_at: todoDocSnap.data()["created_at"]
+            created_at: todoDocSnap.data()["created_at"].toDate()
         }
         return todo
     } 
