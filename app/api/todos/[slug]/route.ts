@@ -20,7 +20,7 @@ export async function GET(req: NextRequest, { params }: { params: { slug: string
 
 
 /*
-@ path    DELETE /api/todos/:id
+@ path    PUT /api/todos/:id
 @ doc     단일 할일 수정
 @ access  public
 */

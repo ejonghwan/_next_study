@@ -23,6 +23,10 @@ export const siteConfig = {
     {
       label: "About",
       href: "/about",
+    },
+    {
+      label: "Todos",
+      href: "/todos",
     }
 	],
 	navMenuItems: [
@@ -57,6 +61,10 @@ export const siteConfig = {
 		{
 			label: "Logout",
 			href: "/logout",
+		},
+		{
+			label: "Todos",
+			href: "/todos",
 		},
 	],
 	links: {

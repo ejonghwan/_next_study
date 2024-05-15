@@ -53,11 +53,11 @@ export async function addTodo({ title }) {
         id: newTodoRef.id,
         title,
         is_done: false,
-        create_at: createAtTimestemp,
+        created_at: createAtTimestemp,
     }
 
     await setDoc(newTodoRef, newTodoData)
-    return { ...newTodoData, create_at: createAtTimestemp.toDate() };
+    return { ...newTodoData, created_at: createAtTimestemp.toDate() };
 }
 
 
