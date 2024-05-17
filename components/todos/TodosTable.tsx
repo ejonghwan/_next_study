@@ -7,7 +7,6 @@ import { Todo } from '@/types/index';
 const TodosTable = ({ todos }: { todos: Todo[] }) => {
 
 
-	console.log('todos?', todos[1].created_at)
 
   return (
     <Table isStriped aria-label="Example static collection table">
@@ -17,15 +16,15 @@ const TodosTable = ({ todos }: { todos: Todo[] }) => {
         <TableColumn>완료여부</TableColumn>
         <TableColumn>생성일</TableColumn>
       </TableHeader>
-      <TableBody>
-		{todos && todos.map((todo: Todo) => (
-			 <TableRow key={todo.id}>
-				<TableCell>{todo.id}</TableCell>
-				<TableCell>{todo.title}</TableCell>
-				<TableCell>{todo.is_done === false ? 'no!': 'yes'}</TableCell>
-				<TableCell>{`${todo.created_at}`}</TableCell>
-			</TableRow>
-		))}
+      <TableBody emptyContent={'데이터가 없습니다.'}>
+        {todos && todos.map((todo: Todo) => (
+          <TableRow key={todo.id}>
+            <TableCell>{todo.id}</TableCell>
+            <TableCell>{todo.title}</TableCell>
+            <TableCell>{todo.is_done === false ? 'no!': 'yes'}</TableCell>
+            <TableCell>{`${todo.created_at}`}</TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );
