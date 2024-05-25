@@ -65,12 +65,6 @@ console.log('objValue', objVal[key])
 
 export default function Home() {
 
-	console.log(123123)
-
-	useEffect(() => {
-		console.log(123123)
-	}, [])
-
 	return (
 		<div>
 			root page
