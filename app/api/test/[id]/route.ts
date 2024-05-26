@@ -46,5 +46,5 @@ export async function POST(request: NextRequest, { params }: { params: { id: str
     const data = await request.json();
     
     
-    return Response.json({ title: data.title, param: params })
+    // return Response.json({ title: data.title, param: params })
 }
