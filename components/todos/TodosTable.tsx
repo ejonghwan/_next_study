@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell} from "@nextui-org/react";
 import { Todo } from '@/types/index';
 import Input from '@/components/common/Input';
@@ -9,6 +9,7 @@ import Button from '@/components/common/Button';
 
 const TodosTable = ({ todos }: { todos: Todo[] }) => {
 
+  const [stateTodos, setStateodos] = useState(todos)
   const [text, setText] = useState('');
 
   const handleInputChange = (e: Event) => {
@@ -16,12 +17,21 @@ const TodosTable = ({ todos }: { todos: Todo[] }) => {
     setText(target.value)
   }
 
-  const handleTodoSubmit = async () => {
-    console.log('handle submit?')
-    
-    const res = await fetch(`${process.env.BASE_URL}/api/todos/`, { method: "POST", body: { title: text, isDone: false } })
 
-    console.log(res.json());
+  const handleTodoSubmit = async () => {
+
+    const options = { 
+      method: "POST", 
+      headers: { "Content-Type": "application/json", },
+      body: JSON.stringify({ title: text, is_done: false })
+    }
+    
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/todos/`, options)
+    const data = await res.json();
+    // console.log('data???', data)
+
+    setStateodos(prev => [ data.data ,...prev ])
+    // console.log(res.json());
   }
 
   return (
@@ -34,7 +44,7 @@ const TodosTable = ({ todos }: { todos: Todo[] }) => {
           <TableColumn>생성일</TableColumn>
         </TableHeader>
         <TableBody emptyContent={'데이터가 없습니다.'}>
-          {todos && todos.map((todo: Todo) => (
+          {stateTodos && stateTodos.map((todo: Todo) => (
             <TableRow key={todo.id}>
               <TableCell title={todo.id}>{todo.id.slice(0, 3)}...</TableCell>
               <TableCell>{todo.title}</TableCell>
@@ -58,10 +68,14 @@ const TodosTable = ({ todos }: { todos: Todo[] }) => {
           attr={{
             type: 'button',
             style: { border: '1px solid #ddd', padding: "5px 10px", borderRadius: "14px" },
+            title: "asdasd"
           }}
           content="할일 입력"
           onClick={handleTodoSubmit}
+          
         />
+
+        
         {text}
       </div>
     </div>

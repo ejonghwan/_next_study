@@ -30,7 +30,7 @@ export async function PUT(req: NextRequest, { params }: { params: { slug: string
    
     const { title, is_done } = await req.json();
     const todo = await updateTodo({ id: params.slug, title, is_done })
-    console.log('todo?', todo)
+    // console.log('todo?', todo)
 
     if(!todo) return NextResponse.json({ state:'FAILUE', message: '없는 글입니다.' }, { status: 400 })
 
@@ -52,7 +52,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { slug: str
     // const query = searchParams.get('query')
    
     const todo = await deleteTodo(params.slug)
-    console.log('todo?', todo)
+    // console.log('todo?', todo)
 
     if(!todo) return NextResponse.json({ state:'FAILUE', message: '없는 글입니다.' }, { status: 400 })
 
