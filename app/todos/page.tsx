@@ -22,7 +22,7 @@ export default async function TodosPage() {
 			<br />
 			<br />
 			<br />
-			<p>{process.env.TEST}</p>
+			{/* <p>{process.env.TEST}</p> */}
 		</div>
 	);
 }
