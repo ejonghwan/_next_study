@@ -1,19 +1,19 @@
-import { ReactElement, useRef } from 'react';
+import { ReactElement, useRef, useState } from 'react';
 
 const useIntersectionObserver = ( callback: Function ) => {
 
-    const observer = useRef(
-      new IntersectionObserver(
-        (entries, observer) => {
+
+    const [isS, setIss] = useState(false)
+    const observer = useRef(new IntersectionObserver( (entries, observer) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              callback();
+                setIss(entry.isIntersecting)
+              callback(entries, observer);
             }
           });
         },
-        { threshold: 1 }
-      )
-    );
+        { threshold: 0 }
+      ));
   
     
     const observe = (element: ReactElement) => {
@@ -24,7 +24,7 @@ const useIntersectionObserver = ( callback: Function ) => {
       observer.current.unobserve(element);
     };
   
-    return [observe, unobserve];
+    return [observe, unobserve, isS];
   }
 
 
