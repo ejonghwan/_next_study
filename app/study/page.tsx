@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect, useState } from 'react'
 
 const StudyPage = () => {
@@ -457,15 +459,34 @@ const StudyPage = () => {
        memo는 컴포넌트를, props 체크 후 변경 시 리렌더링 
        useMemo는 어떤 값을 메모이제이션. 
        useCallback은 어떤 함수를 메모이제이션 
-
-
-
-
-
     */
 
+
+       const [n, setN] = useState(3)
+       const handleNumber = a => b => c => {
+        console.log(a, b, c)
+       }
+
     return (
-        <div>StudyPage</div>
+        <div>
+            {n}
+            {/* case 1 : 이건 그냥  실행한거임. log : aaa bbb ccc */}
+            {/* <button type='button' onClick={handleNumber('aaa')('bbb')('ccc')}>nnn</button> */}
+
+
+            {/* case 2 : 이벤트 걸린거. log : aaa bbb event */}
+            {/* <button type='button' onClick={handleNumber('aaa')('bbb')}>nnn</button> */}
+
+
+            {/* case 3 : 실행안된거. log : 안나옴  */}
+            {/* 이건 당연히 실행이 안됨. 두번쨰까지 밖에 없기떄문에. */}
+            {/* <button type='button' onClick={() => handleNumber('aaa')('bbb')}>nnn</button> */}
+
+
+            {/* case 4 : 이벤트 걸린거. log : 클릭시 aaa bbb ccc  */}
+            {/* 콜백함수로 넘기는건 클릭 시 콜백함수를 실행하라는 뜻이니 그대로 실행되는게 맞음. */}
+            <button type='button' onClick={() => handleNumber('aaa')('bbb')('ccc')}>nnn</button>
+        </div>
     )
 }
 
