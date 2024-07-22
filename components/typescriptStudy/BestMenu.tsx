@@ -16,9 +16,9 @@ const BestMenu: React.FC<OwnProps> = ({ name, category, price, bestMenuFn }) => 
   return (
     <div>
         <h1>BestMenu</h1>
-        {name}
+        {/* {name}
         {category}
-        {price}
+        {price} */}
         <button type="button" onClick={handleCLick}>name?</button>
     </div>
   )
