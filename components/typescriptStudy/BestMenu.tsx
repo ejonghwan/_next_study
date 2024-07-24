@@ -31,7 +31,8 @@ interface OwnProps extends Omit<Menu, 'price'> {
 */
 
 
-const BestMenu: React.FC<OwnProps> = ({ name, category, price, bestMenuFn }) => {
+// const BestMenu:React.FC<OwnProps> = ({ name, category, price, bestMenuFn }) => {
+const BestMenu = ({ name, category, price, bestMenuFn }: OwnProps) => {
 
 
     const handleCLick = () => {
