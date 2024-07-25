@@ -164,4 +164,37 @@ const UserForm = ({ onSubmit }) => {
         onSubmit(name)
         setName('')
     }
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input 
+                type="text"
+                value={name}
+                onChange={e => setName(e.target.value)}
+                placeholder='enter new user name'
+             />
+             <button type="submit">ADd user</button>
+        </form>
+    )
+}
+
+
+
+
+const userList = ({ users, onDeleteUser, isLoading, error }) => {
+    if(isLoading) return <div>Loading...</div>
+    if(error) return <div>{error}</div>
+
+    return (
+        <ul>
+            {users.map(user => {
+                return (
+                    <li key={user.id}>
+                        {user.name}
+                        <button onClick={() => onDeleteUser(user.id)}>Delete user</button>
+                    </li>
+                )
+            })}
+        </ul>
+    )
 }
