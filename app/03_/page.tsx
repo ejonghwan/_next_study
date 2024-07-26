@@ -39,10 +39,7 @@ const page = () => {
 
     쪼개는 기준은 "책임(목적)"
     ErrorBoundary는 에러를 처리하는 목적이기 떄문에 하나의 컴포넌트로 묶은 것
-    
-
 */
-
 
   return (
     <div>
