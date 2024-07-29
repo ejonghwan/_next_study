@@ -164,7 +164,7 @@ const FnPage = () => {
         let img = new Image();
         img.src = url
         img.onload = () => { 
-            resolve(img.height)
+            resolve(img)
         }
         // 의도적으로 에러를 발생시켜 reject로 내보냄
         img.onerror = (e) => {
@@ -189,7 +189,7 @@ const FnPage = () => {
 
     async function f2() {
         // _map(({ url }) => log(url), imgs).next()
-        // for(const a of _map(({ url }) => loadImg(url), imgs)) { log(a) } //여전히 Promise 반환
+        // for await (const a of _map(({ url }) => loadImg(url), imgs)) { log(a) } //여전히 Promise 반환
         for await (const a of _map(img => img.height, _map(({ url }) => loadImg(url), imgs))) { // 이미지도 언디파인드. 동일
             log('??', a)
         }
