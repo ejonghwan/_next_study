@@ -188,14 +188,27 @@ const FnPage = () => {
 
 
     async function f2() {
+        let acc = 0;
         // _map(({ url }) => log(url), imgs).next()
         // for await (const a of _map(({ url }) => loadImg(url), imgs)) { log(a) } //여전히 Promise 반환
         for await (const a of _map(img => img.height, _map(({ url }) => loadImg(url), imgs))) { // 이미지도 언디파인드. 동일
-            log('??', a)
+            // log('??', a)
+            acc = acc + a;
         }
+
+        log('acc?', acc)
     }
 
     f2();
+
+
+
+    // 위 일들이 리듀스
+    function* _reduceAsync(fn, a,) {
+        
+    }
+    
+
  
 
 
