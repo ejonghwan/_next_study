@@ -350,8 +350,8 @@ const FnPage = () => {
             _map(img => img.height, 
                 _map(({ url }) => loadImg(url), imgs)))
      
-     f2(imgs).then(log);
-     f2(imgs2).catch(_ => 0).then(log);
+    //  f2(imgs).then(log);
+    //  f2(imgs2).catch(_ => 0).then(log);
     
     // #######################       총 정리      #########################
 
@@ -402,6 +402,60 @@ const FnPage = () => {
     
 
  
+
+
+
+
+        // promise 복습 
+        const testfn = () => new Promise((resolve, reject) => {
+            const img = new Image();
+            img.src = imgs[0].url
+            
+            img.onload = () => resolve(img)
+
+            return img;
+        })
+
+
+
+        // testfn().then((img: HTMLImageElement) => log('i?', img.height))
+
+
+        const arr = [1,2,3,4]
+
+        function* __map(fn, iter) {
+            for(const a of iter) {
+                console.log('map a?', a)
+                yield fn(a)
+            }
+        }
+
+        function run(iter) {
+            const newArr = []
+            for(const a of iter) {
+                log('inner a?', a)
+               newArr.push(a)
+            }
+            return newArr;
+        }
+
+        const ho = run(
+            __map(a => {
+                log('outer a ?', a); 
+                return a
+            }, arr)
+        )
+        log('ho?', ho)
+
+        // 10
+        // const abc = _reduceAsync(
+        //     (a, b) => a + b, 
+        //     0,
+        //     __map(a => a, arr)
+        // )
+        
+        
+
 
 
 
