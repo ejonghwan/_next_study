@@ -407,46 +407,46 @@ const FnPage = () => {
 
 
 
-        // promise 복습 
-        const testfn = () => new Promise((resolve, reject) => {
-            const img = new Image();
-            img.src = imgs[0].url
+        // // promise 복습 
+        // const testfn = () => new Promise((resolve, reject) => {
+        //     const img = new Image();
+        //     img.src = imgs[0].url
             
-            img.onload = () => resolve(img)
+        //     img.onload = () => resolve(img)
 
-            return img;
-        })
-
-
-
-        // testfn().then((img: HTMLImageElement) => log('i?', img.height))
+        //     return img;
+        // })
 
 
-        const arr = [1,2,3,4]
 
-        function* __map(fn, iter) {
-            for(const a of iter) {
-                console.log('map a?', a)
-                yield fn(a)
-            }
-        }
+        // // testfn().then((img: HTMLImageElement) => log('i?', img.height))
 
-        function run(iter) {
-            const newArr = []
-            for(const a of iter) {
-                log('inner a?', a)
-               newArr.push(a)
-            }
-            return newArr;
-        }
 
-        const ho = run(
-            __map(a => {
-                log('outer a ?', a); 
-                return a
-            }, arr)
-        )
-        log('ho?', ho)
+        // const arr = [1,2,3,4]
+
+        // function* __map(fn, iter) {
+        //     for(const a of iter) {
+        //         console.log('map a?', a)
+        //         yield fn(a)
+        //     }
+        // }
+
+        // function run(iter) {
+        //     const newArr = []
+        //     for(const a of iter) {
+        //         log('inner a?', a)
+        //        newArr.push(a)
+        //     }
+        //     return newArr;
+        // }
+
+        // const ho = run(
+        //     __map(a => {
+        //         log('outer a ?', a); 
+        //         return a
+        //     }, arr)
+        // )
+        // log('ho?', ho)
 
         // 10
         // const abc = _reduceAsync(
@@ -458,6 +458,12 @@ const FnPage = () => {
         
 
 
+
+
+
+
+
+        
 
 
   return (
