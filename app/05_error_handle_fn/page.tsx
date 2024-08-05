@@ -347,8 +347,7 @@ const FnPage = () => {
     
     const f2 = (imgs) => 
         _reduceAsync((a, b) => a + b, 0,
-            _map(img => img.height, 
-                _map(({ url }) => loadImg(url), imgs)))
+            _map(img => img.height, _map(({ url }) => loadImg(url), imgs)))
      
     //  f2(imgs).then(log);
     //  f2(imgs2).catch(_ => 0).then(log);
@@ -409,9 +408,11 @@ const FnPage = () => {
         // promise 복습 
         const testfn = () => new Promise((resolve, reject) => {
             const img = new Image();
-            img.src = imgs[0].url
+            // img.src = imgs2[2].url
+            img.src = imgs2[1].url
             
             img.onload = () => resolve(img)
+            img.onerror = (e) => reject('error?', e)
 
             return img;
         })
@@ -425,28 +426,40 @@ const FnPage = () => {
 
         function* __map(fn, iter) {
             for(const a of iter) {
-                console.log('map a?', a)
+                // console.log('map a?', a) //배열 안 값들
                 yield fn(a)
             }
         }
 
+
+
+        // 이터 함수들을 실행해주는 함수 
         function run(iter) {
             const newArr = []
             for(const a of iter) {
-                log('inner a?', a)
+                log('inner a?', a)  //배열 안 값
                newArr.push(a)
             }
             return newArr;
         }
 
-        const ho = run(
-            __map(a => {
-                log('outer a ?', a); 
-                return a
-            }, arr)
-        )
-        log('ho?', ho)
+        const ho = run( __map(a => { log('outer a ?', a); return a}, arr) )
+        // log('ho?', ho)
 
+
+        // 이터 함수들을 비동기로 실행해주는 함수
+        const __reduceAsync = async (fn, acc, iter) => {
+            for await (const a of iter) {
+                acc = fn(acc, a)
+            }
+            return acc;
+        }
+
+        const f3 = () => 
+            __reduceAsync((a, b) => a + b, 0, __map((img) => loadImg(img.url), imgs)).then(log)
+        
+        f3();
+        
         // 10
         // const abc = _reduceAsync(
         //     (a, b) => a + b, 
