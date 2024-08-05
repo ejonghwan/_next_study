@@ -402,7 +402,75 @@ const FnPage = () => {
 
     
 
- 
+        
+
+        const _loadImg = (url) => new Promise((resolve, reject) => {
+
+            const img = new Image();
+            img.src = url; 
+            img.onload = () => resolve(img);
+            img.onerror = (e) => reject(e)
+            return img
+        }) 
+
+        
+        _loadImg(imgs[0].url).then(img => log('??', img))
+
+        const arr2 = ['a', 'b', 'c']
+
+        function* ___map(fn, iter) {
+            for(const a of iter) {
+                yield a
+            }
+        }
+
+        function* ___filter(fn, iter) {
+            const newArr = [];
+            for(const a of iter) {
+                if( fn(a) ) { yield a }
+            }
+            return newArr
+        }
+
+        function run(fn, iter) {
+            const newArr = []
+            for(const a of iter) {
+                newArr.push( fn(a) )
+            }
+            return newArr
+        }
+
+        function ___reducer(fn, acc, iter) {
+            for(const a of iter) {
+                acc = fn(acc, a)
+            }
+            return acc;
+        }
+
+        // const aa = arr2.filter((item) => item !== 'a')
+        // console.log(aa)
+
+        // const r = run(
+        //     a => a, 
+        //     ___map(a => a, 
+        //         ___filter(a => a !== 'a', arr2)) , 
+            
+        // )
+        // console.log('r?', r)
+
+        // ___map((a) => log(a), arr2)
+
+        const arr3 = [1, 1, 1]
+        const re = ___reducer(
+            (a, b) => a + b,
+            0, 
+            ___map(a => a, arr3)
+        )
+
+        console.log('re?', re)
+
+        
+        
 
 
 
