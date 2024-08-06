@@ -401,50 +401,118 @@ const FnPage = () => {
 
     
 
- 
+        
 
+        const _loadImg = (url) => new Promise((resolve, reject) => {
 
-
-
-        // promise 복습 
-        const testfn = () => new Promise((resolve, reject) => {
             const img = new Image();
-            // img.src = imgs2[2].url
-            img.src = imgs2[1].url
-            
-            img.onload = () => resolve(img)
-            img.onerror = (e) => reject('error?', e)
+            img.src = url; 
+            img.onload = () => resolve(img);
+            img.onerror = (e) => reject(e)
+            return img
+        }) 
 
-            return img;
-        })
+        
+        _loadImg(imgs[0].url).then(img => log('??', img))
 
+        const arr2 = ['a', 'b', 'c']
 
-
-        // testfn().then((img: HTMLImageElement) => log('i?', img.height))
-
-
-        const arr = [1,2,3,4]
-
-        function* __map(fn, iter) {
+        function* ___map(fn, iter) {
             for(const a of iter) {
-                // console.log('map a?', a) //배열 안 값들
-                yield fn(a)
+                yield a
             }
         }
 
+        function* ___filter(fn, iter) {
+            const newArr = [];
+            for(const a of iter) {
+                if( fn(a) ) { yield a }
+            }
+            return newArr
+        }
 
-
-        // 이터 함수들을 실행해주는 함수 
-        function run(iter) {
+        function run(fn, iter) {
             const newArr = []
             for(const a of iter) {
-                log('inner a?', a)  //배열 안 값
-               newArr.push(a)
+                newArr.push( fn(a) )
             }
-            return newArr;
+            return newArr
         }
 
-        const ho = run( __map(a => { log('outer a ?', a); return a}, arr) )
+        function ___reducer(fn, acc, iter) {
+            for(const a of iter) {
+                acc = fn(acc, a)
+            }
+            return acc;
+        }
+
+        // const aa = arr2.filter((item) => item !== 'a')
+        // console.log(aa)
+
+        // const r = run(
+        //     a => a, 
+        //     ___map(a => a, 
+        //         ___filter(a => a !== 'a', arr2)) , 
+            
+        // )
+        // console.log('r?', r)
+
+        // ___map((a) => log(a), arr2)
+
+        const arr3 = [1, 1, 1]
+        const re = ___reducer(
+            (a, b) => a + b,
+            0, 
+            ___map(a => a, arr3)
+        )
+
+        console.log('re?', re)
+
+        
+        
+
+
+
+
+        // // promise 복습 
+        // const testfn = () => new Promise((resolve, reject) => {
+        //     const img = new Image();
+        //     img.src = imgs[0].url
+            
+        //     img.onload = () => resolve(img)
+
+        //     return img;
+        // })
+
+
+
+        // // testfn().then((img: HTMLImageElement) => log('i?', img.height))
+
+
+        // const arr = [1,2,3,4]
+
+        // function* __map(fn, iter) {
+        //     for(const a of iter) {
+        //         console.log('map a?', a)
+        //         yield fn(a)
+        //     }
+        // }
+
+        // function run(iter) {
+        //     const newArr = []
+        //     for(const a of iter) {
+        //         log('inner a?', a)
+        //        newArr.push(a)
+        //     }
+        //     return newArr;
+        // }
+
+        // const ho = run(
+        //     __map(a => {
+        //         log('outer a ?', a); 
+        //         return a
+        //     }, arr)
+        // )
         // log('ho?', ho)
 
 
@@ -471,6 +539,12 @@ const FnPage = () => {
         
 
 
+
+
+
+
+
+        
 
 
   return (
