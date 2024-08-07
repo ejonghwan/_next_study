@@ -415,7 +415,7 @@ const FnPage = () => {
         
         _loadImg(imgs[0].url).then(img => log('??', img))
 
-        const arr2 = ['a', 'b', 'c']
+        const arr2 = ['a', 'b', 'c', 'aa', 'bb', 'cc', 'dd']
 
         function* ___map(fn, iter) {
             for(const a of iter) {
@@ -426,7 +426,8 @@ const FnPage = () => {
         function* ___filter(fn, iter) {
             const newArr = [];
             for(const a of iter) {
-                if( fn(a) ) { yield a }
+                console.log('필터 안쪽. 몇번도는지?', a)
+                if( fn(a) ) { yield a; return; }
             }
             return newArr
         }
@@ -439,7 +440,7 @@ const FnPage = () => {
             return newArr
         }
 
-        function ___reducer(fn, acc, iter) {
+        function ___reduce(fn, acc, iter) {
             for(const a of iter) {
                 acc = fn(acc, a)
             }
@@ -449,24 +450,34 @@ const FnPage = () => {
         // const aa = arr2.filter((item) => item !== 'a')
         // console.log(aa)
 
-        // const r = run(
-        //     a => a, 
-        //     ___map(a => a, 
-        //         ___filter(a => a !== 'a', arr2)) , 
+
+        // 그냥 반복함수해서 뱉는 함수
+        const r = run(
+            a => { log('run?', a); return a }, 
+            ___map(a => { log('map?', a); return a }, 
+                ___filter(a => a === 'c', arr2)) , 
             
-        // )
-        // console.log('r?', r)
-
-        // ___map((a) => log(a), arr2)
-
-        const arr3 = [1, 1, 1]
-        const re = ___reducer(
-            (a, b) => a + b,
-            0, 
-            ___map(a => a, arr3)
         )
+        console.log('r?', r)
 
-        console.log('re?', re)
+        ___map((a) => log(a), arr2)
+
+
+
+        const rr = arr2.filter(a => { log('일반 필터 안 몇번도는지?', a); return a === 'c' }).map(a => a)
+        console.log('rr?', rr)
+
+
+
+        // reduce
+        // const arr3 = [1, 1, 1]
+        // const re = ___reduce(
+        //     (a, b) => a + b,
+        //     0, 
+        //     ___map(a => a, arr3)
+        // )
+
+        // console.log('re?', re)
 
         
         
@@ -517,17 +528,17 @@ const FnPage = () => {
 
 
         // 이터 함수들을 비동기로 실행해주는 함수
-        const __reduceAsync = async (fn, acc, iter) => {
-            for await (const a of iter) {
-                acc = fn(acc, a)
-            }
-            return acc;
-        }
+        // const __reduceAsync = async (fn, acc, iter) => {
+        //     for await (const a of iter) {
+        //         acc = fn(acc, a)
+        //     }
+        //     return acc;
+        // }
 
-        const f3 = () => 
-            __reduceAsync((a, b) => a + b, 0, __map((img) => loadImg(img.url), imgs)).then(log)
+        // const f3 = () => 
+        //     __reduceAsync((a, b) => a + b, 0, __map((img) => loadImg(img.url), imgs)).then(log)
         
-        f3();
+        // f3();
         
         // 10
         // const abc = _reduceAsync(
@@ -540,11 +551,6 @@ const FnPage = () => {
 
 
 
-
-
-
-
-        
 
 
   return (
