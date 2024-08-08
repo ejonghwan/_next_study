@@ -550,6 +550,32 @@ const FnPage = () => {
         
 
 
+        interface User {
+            name: string;
+            age: number
+        }
+
+        interface User2 {
+            age:number 
+        }
+
+        const user1: User = { name: 'j', age: 3 }
+        const user2: User2 = { age: 3 }
+        
+        // const getUserName = <T, >(user: T): string => {
+        //     return user.name; //name에 빨간줄... T안에 name이 없을수도 있다는 에러 
+        // }
+        const getUserName = <T extends { name: string } >(user: T): string => {
+            return user.name; //extends 해줘야 user2에 에러가 뜸
+        }
+
+        
+
+        getUserName(user1)
+        getUserName(user2)
+
+
+
 
 
 
