@@ -575,6 +575,18 @@ const FnPage = () => {
         getUserName(user2)
 
 
+        // typeof??
+
+        const typeFn = (a: number, b: number): number => {
+            return a + b
+        }
+        type A = ReturnType<typeof typeFn>
+        type B = Parameters<typeof typeFn>
+
+        
+
+
+
 
 
 
