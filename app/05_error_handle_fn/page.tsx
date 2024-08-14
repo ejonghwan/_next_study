@@ -566,7 +566,7 @@ const FnPage = () => {
         //     return user.name; //name에 빨간줄... T안에 name이 없을수도 있다는 에러 
         // }
         const getUserName = <T extends { name: string } >(user: T): string => {
-            return user.name; //extends 해줘야 user2에 에러가 뜸
+            return user.name; //extends 해줘야 선언문 user2에 에러가 뜸
         }
 
         
@@ -583,7 +583,7 @@ const FnPage = () => {
         type A = ReturnType<typeof typeFn>
         type B = Parameters<typeof typeFn>
 
-        
+
 
 
 
