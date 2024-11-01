@@ -29,7 +29,7 @@ const TodoItem = ({ todo, setStateodos }) => {
             if(data.state === "SUCCES") { 
                 setIsEditing(!isEditing) 
                 setStateodos(prev => prev.map(item => {
-                    console.log('prev?', prev)
+                    // console.log('prev?', prev)
                     // if(item.id === id) {
                     //     return [...item, { ...item, title: item.title, is_done: item.is_done }]
                     // }
