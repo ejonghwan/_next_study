@@ -7,6 +7,7 @@ import { getAllTodo, addTodo } from "@/data/firestore";
 @ access  public
 */
 export const GET = async (req: NextRequest) => {
+
     const fetchedTodos = await getAllTodo();
     const res = {
         state:'SUCCES',

@@ -21,6 +21,8 @@ const db = getFirestore(app)
 
 // 모든 할일 가져오기
 export async function getAllTodo() {
+
+    console.log('여긴오냐 ?')
     // 모든 문서 가져오기
     const q = query(collection(db, "todos"));
     const querySnapshot = await getDocs(q);
@@ -87,6 +89,7 @@ export async function updateTodo({ id, title, is_done }) {
     if(!isTodo) return null;
 
     const todo = await updateDoc(doc(db, "todos", id), { title, is_done });
+    console.log('단일 업데이트 ?', todo)
     return todo;
 }
 

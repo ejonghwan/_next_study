@@ -30,9 +30,9 @@ export async function PUT(req: NextRequest, { params }: { params: { slug: string
    
     const { title, is_done } = await req.json();
     const todo = await updateTodo({ id: params.slug, title, is_done })
-    // console.log('todo?', todo)
 
-    if(!todo) return NextResponse.json({ state:'FAILUE', message: '없는 글입니다.' }, { status: 400 })
+
+    // if(!todo) return NextResponse.json({ state:'FAILUE', message: '없는 글입니다.' }, { status: 400 })
 
     const res = { state:'SUCCES', message: '성공', data: todo }
     return NextResponse.json(res, { status: 200 })
