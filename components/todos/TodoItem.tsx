@@ -43,7 +43,7 @@ const TodoItem = ({ todo, setStateodos }) => {
         
     }
 
-    // delete
+    // delete zz
     const handleTotoDelete = async (id: string) => {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/todos/${id}`, {
             method:'DELETE',
