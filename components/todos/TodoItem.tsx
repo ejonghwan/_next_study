@@ -18,6 +18,8 @@ const TodoItem = ({ todo, setStateodos }) => {
 
     // update
     const handleTodoUpdate = async (id: string) => {
+
+        
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/todos/${id}`, {
             method:'PUT',
             headers: {"Content-Type": "application/json",},
@@ -29,10 +31,11 @@ const TodoItem = ({ todo, setStateodos }) => {
             if(data.state === "SUCCES") { 
                 setIsEditing(!isEditing) 
                 setStateodos(prev => prev.map(item => {
-                    // console.log('prev?', prev)
-                    // if(item.id === id) {
-                    //     return [...item, { ...item, title: item.title, is_done: item.is_done }]
-                    // }
+                    if(item.id === id) {
+                        // return { ...item, title: item.title, is_done: item.is_done }
+                        return { ...item, title: title, is_done: isdone }
+                    }
+                    return item
                 }))
             
             }
@@ -42,7 +45,6 @@ const TodoItem = ({ todo, setStateodos }) => {
 
     // delete
     const handleTotoDelete = async (id: string) => {
-        console.log('del id??', id)
         const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/todos/${id}`, {
             method:'DELETE',
             headers: {"Content-Type": "application/json",},
