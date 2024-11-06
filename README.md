@@ -23,7 +23,7 @@ CSR에서 바로 호출한 데이터는 ?
 => 무한 호출되면서 아래 같은 워닝이 뜸 
 경고: async/await는 아직 클라이언트 구성 요소에서는 지원되지 않으며 서버 구성 요소에서만 지원됩니다. 이 오류는 원래 서버용으로 작성된 모듈에 '클라이언트 사용'을 실수로 추가하여 발생하는 경우가 많습니다. 오류 구성요소 스택
 
-```react
+```typescript
 
     <CSRChildren />  //안에서  SSRChildren 호출
 ```
@@ -32,7 +32,7 @@ CSR에서 바로 호출한 데이터는 ?
 => SSR로 잘 호출 됨 
 
 
-```react
+```typescript
     <CSRChildren>
         <SSRChildren /> 
     </CSRChildren>
