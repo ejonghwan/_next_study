@@ -5,7 +5,7 @@ const SSR = ({ data }) => {
     <div>
        <h2>SSR</h2>
       <ul>
-         {data.map((item, idx) => {
+         {data.map((item: any, idx: number) => {
             return (
                <li key={idx}>{item.title}</li>
             )

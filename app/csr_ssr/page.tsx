@@ -5,19 +5,25 @@ import CSR from '@/components/csr_ssr/CSR'
 const Page = async () => {
 
    const getDataApi = async () => {
-       const res = await fetch('https://jsonplaceholder.typicode.com/todos')
+       const res = await fetch('https://jsonplaceholder.typicode.com/posts', { cache: "no-cache" })
        const data = await res.json();
        return data;
       //  console.log('data??', res, data)
    }
 
    const dd = await getDataApi();
-   console.log('ddasdasdasd?', dd)
+  //  console.log('ddasdasdasd?', dd)
+
+
+
   return (
-    <div className='flex'>
-      <CSR data={dd} />
-      <SSR data={dd} />
-    </div>
+    <>
+    
+      <div className='flex'>
+        <CSR data={dd} />
+        <SSR data={dd} />
+      </div>
+    </>
   )
 }
 
