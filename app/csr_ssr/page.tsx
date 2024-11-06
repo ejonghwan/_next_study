@@ -20,7 +20,7 @@ const Page = async () => {
     <>
     
       <div className='flex'>
-        뭐지뭐지
+        뭐지뭐지 asdasd
         <CSR data={dd} />
         <SSR data={dd} />
       </div>
