@@ -19,16 +19,15 @@ CSR에서 바로 호출한 데이터는 ?
 => html 파일에는 호출되어 보이지 않음.. 근데 일반 택스트들은 그냥 보이는 듯 ?
 
 ## 실험 3 
-- CSR 컴포넌트에서 SSR 컴포넌트 호출해보기 (no children)
+### CSR 컴포넌트에서 SSR 컴포넌트 호출해보기 (no children)
 => 무한 호출되면서 아래 같은 워닝이 뜸 
 경고: async/await는 아직 클라이언트 구성 요소에서는 지원되지 않으며 서버 구성 요소에서만 지원됩니다. 이 오류는 원래 서버용으로 작성된 모듈에 '클라이언트 사용'을 실수로 추가하여 발생하는 경우가 많습니다. 오류 구성요소 스택
 
 ```typescript
-
     <CSRChildren />  //안에서  SSRChildren 호출
 ```
 
-- CSR 컴포넌트에서 SSR 컴포넌트 호출해보기 (children)
+### CSR 컴포넌트에서 SSR 컴포넌트 호출해보기 (children)
 => SSR로 잘 호출 됨 
 
 
@@ -39,4 +38,12 @@ CSR에서 바로 호출한 데이터는 ?
 ```
 
 
+
+
+## onBlur에서 e.relatedTarget 기억하기 
+다음 포커스 타겟임.
+
+e.target //지금 찍은 타겟
+e.currentTarget // 원래 타겟 (고정)
+e.relatedTarget // 다음 타겟
         
