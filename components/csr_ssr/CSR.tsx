@@ -47,6 +47,9 @@ const CSR = ({ data }) => {
      }
 
 
+    
+
+
    //   if(isError) {
    //    return <div>
    //        <Image src="/error.png" alt=""  width={100} height={100} />
