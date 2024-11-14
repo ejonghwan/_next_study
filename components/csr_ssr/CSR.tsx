@@ -1,6 +1,8 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
+import Image from 'next/image'
+import defaultImg from "@/public/error.png";
 
 // const CSR = () => {
 const CSR = ({ data }) => {
@@ -36,8 +38,49 @@ const CSR = ({ data }) => {
      }
   
 
+
+     const [isError, setIsError] = useState(false)
+     const [url, setUrl] = useState('/aab2.png')
+
+     const handleImgError = () => {
+      setUrl('/error.png')
+     }
+
+
+    
+
+
+   //   if(isError) {
+   //    return <div>
+   //        <Image src="/error.png" alt=""  width={100} height={100} />
+   //    </div>
+   //   }
   return (
     <div>
+      
+      <h2>이미지 테스트 1</h2>
+      <Image src="/aab.png" alt="" width={100} height={100} />
+
+      <h2>이미지 테스트 2 {isError ? 'true':'false'}</h2>
+
+      {isError ? (
+         <Image src="/error.png" alt="" onError={() => setIsError(true)}  width={100} height={100} />
+      ) : (
+         <Image src="/aab2.png" alt="" onError={() => setIsError(true)}  width={100} height={100} />
+      )}
+      {/* <Image src="/aab2.png" alt="" onError={() => setIsError(true)}  width={100} height={100} /> */}
+      {/* <Image src={url} alt="" onError={handleImgError}  width={100} height={100} /> */}
+      
+
+      {/* <h2>이미지 테스트 1</h2>
+      <img src="/aab.png" alt="" width={100} height={100} />
+
+      <h2>이미지 테스트 2 {isError ? 'true':'false'}</h2>
+      <img src="/aab2.png" alt="" onError={() => { console.log('img 태그 에러'); setIsError(true) }}  width={100} height={100} />
+
+      <img src="/aab2.png" alt="" onError={(event) => handleImgError(event)}  width={100} height={100} /> */}
+
+
       <h2>CSR</h2>
       <button type="button" className='parent' onBlur={(e) => handleTestBlue(e)}>zzzz</button>
       <div className='parent' onClick={(e) => handleTestClick(e)}>
