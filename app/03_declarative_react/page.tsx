@@ -1,3 +1,14 @@
+import React from 'react'
+
+const page = () => {
+  return (
+    <div>page</div>
+  )
+}
+
+export default page
+
+
 // import React from 'react'
 // import { useUsers } from './hooks/useUsers' 
 // import userForm from './components/UserFrom' 
