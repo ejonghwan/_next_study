@@ -2,6 +2,7 @@ import React from 'react'
 import SSR from '@/components/csr_ssr/SSR'
 import CSR from '@/components/csr_ssr/CSR'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Page = async () => {
 
@@ -24,16 +25,22 @@ const Page = async () => {
   // 3. 만약 비동기 요청소스가 있으면 저 단계에서 요청 후 섞어줌
   
 
+
   return (
     <>
+      <h2>prefetch test</h2>
+      <Link href="/prefetch_test">move to prefetch page</Link>
 
-
+      <h2>img test</h2>
       <div style={{ position: 'relative' }}>
         <Image src={'/aab.png'} alt={'hoho'} width={50} height={50} />
       </div>
       <br />
       <div style={{ width: '200px', height: '200px', position: 'relative' }}>
-        <Image src={'/error.png'} alt={'hoho'} layout="fill" loading='eager'/>
+        <Image src={'/error.png'} alt={'hoho'} fill loading='eager'/>
+      </div>
+      <div style={{ width: '100%', height: '500px', position: 'relative' }}>
+        <Image src={'/error.png'} alt={'hoho'} fill loading='eager'/>
       </div>
 
       <br />

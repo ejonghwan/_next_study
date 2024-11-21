@@ -572,7 +572,7 @@ const FnPage = () => {
         
 
         getUserName(user1)
-        getUserName(user2)
+        // getUserName(user2)
 
 
         // typeof??
