@@ -1,14 +1,14 @@
 export type Info = {
     name: string;
     category: string;
-    address: Address; 
+    address: Address;
     menu: Menu[]
 }
 
 export type Address = {
-    city: string; 
+    city: string;
     detail: string;
-    zipCode: number; 
+    zipCode: number;
 }
 
 export type Menu = {
@@ -20,6 +20,8 @@ export type Menu = {
 
 
 /*
+
+
 
     ## type 에서만 사용할 수 있는 기능. 
     1. 만약 address 에서 zipCode가 필요없을 경우 
