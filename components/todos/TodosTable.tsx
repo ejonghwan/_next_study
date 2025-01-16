@@ -22,29 +22,29 @@ const Todosdiv = ({ todos }: { todos: Todo[] }) => {
 
 
   const handleTodoSubmit = async () => {
-    const options = { 
-      method: "POST", 
+    const options = {
+      method: "POST",
       headers: { "Content-Type": "application/json", },
       body: JSON.stringify({ title: text, is_done: false })
     }
-    
+
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/todos/`, options)
     const data = await res.json();
     // console.log('data???', data)
-    
-    setStateodos(prev => [ data.data ,...prev ])
+
+    setStateodos(prev => [data.data, ...prev])
     // console.log(res.json());
   }
 
 
-  
+
 
   return (
     <div>
 
 
-    <div className="my-[50px]">
-        <Input 
+      <div className="my-[50px]">
+        <Input
           attr={{
             type: "text",
             placeholder: "할일입력",
@@ -52,7 +52,7 @@ const Todosdiv = ({ todos }: { todos: Todo[] }) => {
           }}
           handleInputChange={handleInputChange}
         />
-        <Button 
+        <Button
           attr={{
             type: 'button',
             style: { border: '1px solid #ddd', padding: "5px 10px", borderRadius: "14px" },
@@ -66,20 +66,20 @@ const Todosdiv = ({ todos }: { todos: Todo[] }) => {
 
       <div className="w-[800px]">
         <div className="flex justify-start gap-[20px]">
-          <div>아이디</div>
+          <div>아이디 </div>
           <div>할일내용</div>
           <div>완료여부</div>
-          <div>생성일</div>
+          <div>생성일 asdasdasd</div>
         </div>
         <div>
           {stateTodos && stateTodos.map((todo: Todo) => (
-            <TodoItem todo={todo} key={todo.id} setStateodos={setStateodos}/>
+            <TodoItem todo={todo} key={todo.id} setStateodos={setStateodos} />
           ))}
         </div>
       </div>
-      
+
     </div>
-    
+
   );
 }
 
