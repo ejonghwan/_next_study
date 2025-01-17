@@ -60,7 +60,8 @@ const TodoItem = ({ todo, setStateodos }) => {
 
     return (
         <div key={todo.id} className="flex justify-between border border-solid border-[#333] rounded-[10px] mt-[10px] items-center">
-            <div>hohohoho asdasdasd</div>
+
+            <div dangerouslySetInnerHTML={{ __html: todo.title }} />
             <div title={todo.id} className="p-[10px]">{todo.id.slice(0, 3)}...</div>
             <div>
                 {isEditing ? (
